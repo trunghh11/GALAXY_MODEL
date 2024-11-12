@@ -2,14 +2,14 @@
 set -ux
 
 # CUDA environment settings.
-export CUDA_VISIBLE_DEVICES=0
+# export CUDA_VISIBLE_DEVICES=0
 
 # Parameters.
 DATA_NAME=multiwoz
 PROJECT_NAME=GALAXY
 MODEL=UnifiedTransformer
-PROJECT_ROOT=/data/nt12_ssd_gluster/myself/${PROJECT_NAME}
-SAVE_ROOT=/data/nt12_hdd_gluster/myself/${PROJECT_NAME}
+PROJECT_ROOT=/Users/kevin/Documents/UET/CSHTTT/GALAXY_MODEL/${PROJECT_NAME}
+SAVE_ROOT=/Users/kevin/Documents/UET/CSHTTT/GALAXY_MODEL/OUTPUTS/${PROJECT_NAME}
 VOCAB_PATH=${PROJECT_ROOT}/model/Bert/vocab.txt
 VERSION=2.1
 LOAD_MODEL_DIR=110-76

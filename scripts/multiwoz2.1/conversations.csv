@@ -1,0 +1,101 @@
+User ID,Conversation ID,Goal Type,Goal Description,Number of Turns,Termination Type,Errors
+C1,1,Closed,Book an Italian restaurant for 2 people on Saturday night,14,Normal without inconvenience,[]
+C1,2,Closed,Book a 3-star hotel near the city center,9,Normal without inconvenience,[]
+C2,3,Closed,Find a coffee shop open until 10 PM,6,Abnormal termination,"['Repetition', 'Irrelevant response', 'Pretending']"
+C3,4,Closed,Book a sushi restaurant for 4 people on the weekend,13,Normal without inconvenience,[]
+C4,5,Closed,Find a restaurant serving European-style breakfast,14,Normal with inconvenience,"['Pretending', 'Self-contradiction']"
+C5,6,Closed,Book a hotel with a single room and free breakfast,9,Normal with inconvenience,"['Pretending', 'Irrelevant response']"
+C6,7,Closed,Find a movie theater near the city park,5,Normal without inconvenience,[]
+C7,8,Closed,Book movie tickets for Friday,12,Normal without inconvenience,[]
+C8,9,Closed,Find a store that sells fresh fruit,7,Abnormal termination,"['Repetition', 'Poor fluency', 'Irrelevant response', 'Pretending']"
+C9,10,Closed,Find a restaurant serving Vietnamese food,10,Normal without inconvenience,[]
+C10,11,Closed,Book a Chinese restaurant for lunch on Sunday,14,Normal without inconvenience,[]
+C1,12,Closed,Book a car to the airport on Monday morning,9,Normal without inconvenience,[]
+C2,13,Closed,Find a pet shop near home,7,Normal without inconvenience,[]
+C3,14,Closed,Book a double room at a hotel near the beach,14,Normal without inconvenience,[]
+C4,15,Closed,Find a coffee shop with a workspace area,12,Normal without inconvenience,[]
+C5,16,Closed,Book a dinner table for 3 at a Korean restaurant,8,Normal without inconvenience,[]
+C6,17,Closed,Find a parking lot near the shopping mall,15,Normal without inconvenience,[]
+C7,18,Closed,Book a flight to Hanoi on Tuesday,14,Abnormal termination,"['Pretending', 'Self-contradiction', 'Poor fluency', 'Repetition']"
+C8,19,Closed,Find a store for fashion shoes,12,Normal without inconvenience,[]
+C9,20,Closed,Book a 4-star hotel with a swimming pool,6,Normal without inconvenience,[]
+C10,21,Closed,Find a nearby supermarket to buy groceries,5,Normal without inconvenience,[]
+C1,22,Closed,Book a shuttle to the train station,11,Normal without inconvenience,[]
+C2,23,Closed,Find an electronics store,15,Normal without inconvenience,[]
+C3,24,Closed,Book a dinner for 5 people tonight,7,Abnormal termination,"['Repetition', 'Pretending']"
+C4,25,Closed,Find a fast-food restaurant,11,Abnormal termination,"['Repetition', 'Irrelevant response', 'Pretending', 'Poor fluency']"
+C5,26,Closed,Book a bus ticket to the nearest city,10,Normal with inconvenience,['Irrelevant response']
+C6,27,Closed,Find a vegetarian restaurant,8,Normal without inconvenience,[]
+C7,28,Closed,Book a hotel with a fitness room,6,Normal with inconvenience,"['Poor fluency', 'Repetition']"
+C8,29,Closed,Find a cosmetic store,12,Abnormal termination,"['Irrelevant response', 'Pretending', 'Repetition', 'Self-contradiction']"
+C9,30,Closed,Book a car for a conference on Thursday,15,Normal without inconvenience,[]
+C10,31,Closed,Find the largest shopping mall in the area,7,Normal with inconvenience,"['Irrelevant response', 'Repetition', 'Pretending']"
+C1,32,Closed,Book a table at a French restaurant for 2 on Saturday afternoon,6,Normal without inconvenience,[]
+C2,33,Closed,Find a handicraft shop,8,Abnormal termination,"['Pretending', 'Self-contradiction', 'Repetition', 'Poor fluency']"
+C3,34,Closed,Book tickets for a concert on Friday night,9,Normal without inconvenience,[]
+C4,35,Closed,Find a restaurant serving Asian cuisine,14,Normal without inconvenience,[]
+C5,36,Closed,Book a hotel near a park,10,Normal with inconvenience,['Poor fluency']
+C6,37,Closed,Find a hair salon open on Sunday,10,Normal without inconvenience,[]
+C7,38,Closed,Book a hotel with spa services,7,Normal without inconvenience,[]
+C8,39,Closed,Find a coffee shop serving teas,11,Normal with inconvenience,['Repetition']
+C9,40,Closed,Book a family dinner for 4 people,15,Normal with inconvenience,"['Repetition', 'Irrelevant response']"
+C10,41,Closed,Find an organic supermarket,6,Abnormal termination,"['Irrelevant response', 'Pretending', 'Self-contradiction', 'Repetition']"
+C1,42,Closed,Book breakfast at a Mexican restaurant,15,Normal without inconvenience,[]
+C2,43,Closed,Find a vegetarian restaurant with dessert options,5,Normal with inconvenience,['Repetition']
+C3,44,Closed,Book a table for 6 at an Indian restaurant,15,Normal without inconvenience,[]
+C4,45,Closed,Find a laundry near the hotel,15,Normal without inconvenience,[]
+C5,46,Closed,Book shuttle service for a group of 10,6,Normal without inconvenience,[]
+C6,47,Closed,Find an appliance store,6,Abnormal termination,"['Irrelevant response', 'Self-contradiction', 'Repetition', 'Pretending']"
+C7,48,Closed,Book a train ticket to another city,11,Normal without inconvenience,[]
+C8,49,Closed,Find a coffee shop with a balcony,5,Normal without inconvenience,[]
+C9,50,Closed,Book lunch for a corporate group,10,Abnormal termination,"['Irrelevant response', 'Pretending', 'Repetition', 'Poor fluency']"
+O1,51,Open,Find an Italian restaurant with gluten-free options,8,Normal with inconvenience,"['Self-contradiction', 'Pretending']"
+O1,52,Open,Find a hotel near the mountains with bike rentals,11,Normal without inconvenience,[]
+O2,53,Open,Find a pet-friendly coffee shop,6,Normal with inconvenience,"['Poor fluency', 'Irrelevant response', 'Pretending']"
+O3,54,Open,Book a seafood restaurant with vegetarian options for lunch,5,Abnormal termination,"['Irrelevant response', 'Poor fluency', 'Self-contradiction', 'Pretending']"
+O4,55,Open,Find a place selling Japanese street food,5,Normal without inconvenience,[]
+O5,56,Open,Find a hotel with an outdoor bathtub,5,Normal with inconvenience,['Repetition']
+O6,57,Open,Find a movie theater with special screenings for kids,5,Abnormal termination,"['Irrelevant response', 'Repetition', 'Poor fluency']"
+O7,58,Open,Find a Chinese restaurant with non-spicy dishes,8,Normal with inconvenience,"['Self-contradiction', 'Repetition']"
+O8,59,Open,Book a private car with tour guide services,14,Normal with inconvenience,['Irrelevant response']
+O9,60,Open,Find a breakfast place with vegan options,9,Normal with inconvenience,['Repetition']
+O10,61,Open,Book a French restaurant with outdoor seating,7,Abnormal termination,"['Poor fluency', 'Self-contradiction', 'Irrelevant response', 'Pretending']"
+O1,62,Open,Find a hotel with a kids’ playground,7,Normal with inconvenience,"['Repetition', 'Pretending', 'Self-contradiction']"
+O2,63,Open,Find an eco-friendly store,7,Normal with inconvenience,"['Repetition', 'Irrelevant response', 'Poor fluency']"
+O3,64,Open,Book a hotel room with a sauna,13,Normal with inconvenience,['Irrelevant response']
+O4,65,Open,Find a coffee shop with live music,12,Normal with inconvenience,"['Repetition', 'Pretending']"
+O5,66,Open,Book a table at an African restaurant with spicy food,5,Abnormal termination,"['Poor fluency', 'Repetition']"
+O6,67,Open,Find a restaurant with detox drinks,7,Abnormal termination,"['Pretending', 'Poor fluency', 'Irrelevant response', 'Self-contradiction']"
+O7,68,Open,Book a flight with spacious seating,6,Normal with inconvenience,['Self-contradiction']
+O8,69,Open,Find a fashion store with recycled clothing,6,Normal with inconvenience,"['Pretending', 'Self-contradiction', 'Irrelevant response']"
+O9,70,Open,Book a hotel room with an ocean view and breakfast,14,Normal without inconvenience,[]
+O10,71,Open,Find a local souvenir shop,12,Normal with inconvenience,"['Repetition', 'Irrelevant response', 'Pretending']"
+O1,72,Open,Book a car with massage service on board,15,Normal with inconvenience,"['Irrelevant response', 'Repetition']"
+O2,73,Open,Find a store selling the latest tech gadgets,13,Normal with inconvenience,"['Pretending', 'Repetition']"
+O3,74,Open,Book a family dinner with child care service,7,Abnormal termination,"['Pretending', 'Irrelevant response', 'Poor fluency']"
+O4,75,Open,Find a Middle Eastern restaurant,9,Abnormal termination,"['Repetition', 'Poor fluency', 'Self-contradiction', 'Irrelevant response']"
+O5,76,Open,Book a bus ticket with a private seating area,7,Normal with inconvenience,"['Repetition', 'Self-contradiction', 'Pretending']"
+O6,77,Open,Find an Indian-style vegetarian restaurant,10,Normal with inconvenience,"['Poor fluency', 'Irrelevant response', 'Repetition']"
+O7,78,Open,Book a hotel with morning yoga classes,14,Normal with inconvenience,"['Self-contradiction', 'Poor fluency', 'Repetition']"
+O8,79,Open,Find a natural cosmetics store,5,Abnormal termination,"['Poor fluency', 'Repetition', 'Self-contradiction']"
+O9,80,Open,Book a car for a scenic tour,11,Normal with inconvenience,"['Pretending', 'Self-contradiction']"
+O10,81,Open,Find a shopping mall with green space,12,Normal with inconvenience,"['Repetition', 'Pretending', 'Irrelevant response']"
+O1,82,Open,Book a table at an Italian restaurant with live music,15,Normal with inconvenience,"['Self-contradiction', 'Repetition']"
+O2,83,Open,Find a place selling traditional handicrafts,11,Normal with inconvenience,"['Self-contradiction', 'Poor fluency']"
+O3,84,Open,Book theater tickets with subtitles,13,Abnormal termination,"['Poor fluency', 'Pretending']"
+O4,85,Open,Find a restaurant serving Mediterranean cuisine,13,Normal with inconvenience,['Pretending']
+O5,86,Open,Book a hotel near a history museum,15,Normal with inconvenience,"['Pretending', 'Poor fluency', 'Repetition']"
+O6,87,Open,Find a hair salon with skin care services,11,Abnormal termination,"['Poor fluency', 'Pretending', 'Repetition', 'Irrelevant response']"
+O7,88,Open,Book a hotel room with a private steam room,9,Abnormal termination,"['Poor fluency', 'Pretending', 'Repetition']"
+O8,89,Open,Find a coffee shop serving fresh juice,14,Normal with inconvenience,"['Repetition', 'Pretending']"
+O9,90,Open,Book a diet-friendly dinner option,6,Normal with inconvenience,['Irrelevant response']
+O10,91,Open,Find a lactose-free food store,6,Normal with inconvenience,['Self-contradiction']
+O1,92,Open,Book breakfast at a restaurant with diverse menu options,13,Abnormal termination,"['Self-contradiction', 'Irrelevant response']"
+O2,93,Open,Find a vegetarian restaurant with local dishes,11,Normal with inconvenience,"['Pretending', 'Poor fluency', 'Self-contradiction']"
+O3,94,Open,Book a table for 8 at a barbecue restaurant,9,Abnormal termination,"['Self-contradiction', 'Irrelevant response']"
+O4,95,Open,Find a laundry service with pickup and delivery,13,Normal with inconvenience,['Poor fluency']
+O5,96,Open,Book a car with Wi-Fi and snacks,10,Normal with inconvenience,"['Self-contradiction', 'Pretending']"
+O6,97,Open,Find a store selling rare electronic accessories,8,Abnormal termination,"['Irrelevant response', 'Pretending']"
+O7,98,Open,Book a private train compartment,5,Abnormal termination,"['Poor fluency', 'Self-contradiction', 'Irrelevant response']"
+O8,99,Open,Find a coffee shop with a free reading service,10,Normal with inconvenience,['Irrelevant response']
+O9,100,Open,Book a lunch with sugar-free meal options,6,Normal with inconvenience,"['Repetition', 'Poor fluency']"
