@@ -123,7 +123,7 @@ def main():
 
     if hparams.do_infer:
         # infer process
-        trainer.infer(data_type='test')
+        trainer.infer_gradio(data_type='test')
 
 
 if __name__ == "__main__":

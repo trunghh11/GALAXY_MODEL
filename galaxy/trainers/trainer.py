@@ -1,12 +1,16 @@
 """
 Trainer class.
 """
+import gradio as gr
+import random
+import string
 import json
 import logging
 import os
 import sys
 import time
 from collections import OrderedDict
+
 
 import torch
 
@@ -342,6 +346,134 @@ class MultiWOZTrainer(Trainer):
                  reader=None, evaluator=None):
         super(MultiWOZTrainer, self).__init__(model, to_tensor, hparams, logger, lr_scheduler, optimizer,
                                               reader, evaluator)
+        
+    def infer_gradio(self, data_type="test"):
+        TITLE = "Interactive TOD"
+        LOG = {}
+        TURN = 0
+        PV_TURN = {}
+        HISTORY = []
+
+        CHAR_SET = string.ascii_uppercase + string.digits
+        KEY = "".join(random.sample(CHAR_SET*6, 6))
+
+        def get_response(txt, dom, book):
+            nonlocal LOG, TURN, PV_TURN, HISTORY
+            tokenized = self.tokenizer.tokenize(txt.lower())
+            user_input = [self.reader.sos_u_id] + \
+                self.tokenizer.convert_tokens_to_ids(tokenized) + \
+                [self.reader.eos_u_id]
+            first_turn = (TURN == 0)
+            user_input_dict, prompt_id = self.reader.convert_turn_eval({"user":user_input}, PV_TURN, (TURN==0))            
+            batch, _ = self.reader.collate_fn_multi_turn(samples=[user_input_dict])
+            batch = type(batch)(map(lambda kv: (kv[0], self.to_tensor(kv[1])), batch.items()))
+
+            outputs = self.func_model.infer(
+                inputs=batch, start_id=prompt_id, eos_id=self.reader.eos_b_id, max_gen_len=60
+            )
+            generated_bs = outputs[0].cpu().numpy().tolist()
+            bspn_gen = self.decode_generated_bspn(generated_bs)                
+
+            result = self.reader.bspan_to_DBpointer(self.tokenizer.decode(bspn_gen), [f"[{dom}]"]).split(" ")
+            print(result)
+
+            db_result, matching, constraint, *_ = self.reader.bspan_to_DBpointer (
+                self.tokenizer.decode(bspn_gen), [f"[{dom}]"]
+            )
+            
+
+            if book == "N/A":
+                book_result = 68
+            elif book == "fail":
+                book_result = 69
+            elif book == "success":
+                book_result = 70
+
+            db = [self.reader.sos_db_id] + \
+                    self.tokenizer.convert_tokens_to_ids([db_result]) + \
+                    [book_result] +\
+                    [self.reader.eos_db_id]
+            prompt_id = self.reader.sos_a_id
+
+            prev_input = torch.tensor(bspn_gen + db)
+            if self.func_model.use_gpu:
+                prev_input = prev_input.cuda()
+            outputs_db = self.func_model.infer(
+                inputs=batch, start_id=prompt_id, eos_id=self.reader.eos_r_id, max_gen_len=80, prev_input=prev_input
+            )
+            generated_ar = outputs_db[0].cpu().numpy().tolist()
+            try:
+                decoded = self.decode_generated_act_resp(generated_ar)
+                decoded['bspn'] = bspn_gen
+            except ValueError as exception:
+                self.logger.info(str(exception))
+                self.logger.info(self.tokenizer.decode(generated_ar))
+                decoded = {'resp': [], 'bspn': [], 'aspn': []}
+        
+            PV_TURN['labels'] = user_input_dict['labels']  # all true previous context 
+            PV_TURN['resp'] = decoded['resp']
+            PV_TURN['bspn'] = decoded['bspn']
+            PV_TURN['db'] = db
+            PV_TURN['aspn'] = decoded['aspn']
+            
+            LOG[TURN] = {}
+            LOG[TURN]["user"] = txt
+            LOG[TURN]["response"] = self.tokenizer.decode(decoded["resp"])
+            LOG[TURN]["state"] = self.tokenizer.decode(decoded["bspn"])
+            LOG[TURN]["action"] = self.tokenizer.decode(decoded["aspn"])
+            LOG[TURN]["db"] = self.tokenizer.decode(db)
+            LOG[TURN]["matching_entity"] = matching
+            LOG[TURN]["domain"] = dom
+            HISTORY.append((txt, " ".join(self.tokenizer.decode(decoded["resp"]).split()[1:-1])))
+            TURN += 1
+            return HISTORY
+
+        def restart():
+            nonlocal KEY, LOG, TURN, PV_TURN, HISTORY
+            KEY = "".join(random.sample(CHAR_SET*6, 6))
+            LOG = {}
+            TURN = 0
+            PV_TURN = {}
+            HISTORY = []
+            return HISTORY
+
+        def finish():
+            nonlocal KEY, LOG
+            with open(f"./log_{KEY}.json", "w") as json_file:
+                json.dump(LOG, json_file, indent=4)
+            return restart()
+        
+        demo = gr.Blocks(title=TITLE) 
+        with demo:
+            gr.Markdown("# Interactive End-to-End Task-oriented Dialogue")
+            with gr.Row():
+                with gr.Column():
+                    input_box = gr.Textbox(label="Message", placeholder="Try conversation!")
+                    domain_check = gr.Radio(
+                        choices=["hotel", "restaurant", "attraction", "taxi", "train"], 
+                        label="Domain", 
+                        interactive=True,
+                        value="hotel",
+                    )
+                    book_check = gr.Radio(
+                        choices=["N/A", "fail", "success"], 
+                        label="Booking", 
+                        interactive=True,
+                        value="N/A",
+                    )
+                    with gr.Row():
+                        btn_restart = gr.Button(value="RESTART")
+                        btn_submit = gr.Button(value="SUBMIT", variant="primary")
+                with gr.Column():
+                    # chatbot = gr.Chatbot(label="Output", type="messages")
+                    chatbot = gr.Chatbot(label="Output")
+                    btn_finish = gr.Button(value="FINISH & SAVE", variant="primary")
+
+                btn_submit.click(fn=get_response, inputs=[input_box, domain_check, book_check], outputs=chatbot)
+                btn_restart.click(fn=restart, inputs=None, outputs=chatbot)
+                btn_finish.click(fn=finish, inputs=None, outputs=chatbot)
+
+        demo.launch(share=True)
 
     def train_epoch(self, train_data, dev_data):
         """
